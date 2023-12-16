@@ -31,12 +31,17 @@ onMounted(() => {
   name.value = localStorage.getItem("name") || "";
 });
 
+// Initialize consts for Date and Time
 const currentDate = new Date().toISOString();
+const currentTime = new Date().toLocaleTimeString();
+
+// function for formatting the Date with dayjs
 const formatDate = (currentDate) => {
   const formattedDate = dayjs(currentDate).format("DD.MM.YYYY");
   return formattedDate;
 };
 
+// store the output of formatting function in a final const
 const finalDate = formatDate(currentDate);
 </script>
 
@@ -54,6 +59,7 @@ const finalDate = formatDate(currentDate);
           />
         </h2>
         <h3 class="mt-6">{{ finalDate }}</h3>
+        <h3 class="mt-6">{{ currentTime }}</h3>
       </div>
     </section>
   </main>
