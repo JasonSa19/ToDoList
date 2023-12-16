@@ -25,25 +25,31 @@ watch(name, (newVal) => {
   localStorage.setItem("name", newVal);
 });
 
+// get storaged Name
 onMounted(() => {
   name.value = localStorage.getItem("name") || "";
 });
 
-// Pull name from Local Storage
+// Get Time and Date
+
+const currentDate = new Date();
 </script>
 
 <template>
   <main id="app">
     <section class="greeting mt-12 flex justify-center">
-      <h2 class="font-bold">
-        Hey
-        <input
-          class="appearance-none border-none bg-transparent text-white focus:border-none"
-          type="text"
-          placeholder="Name eintragen"
-          v-model="name"
-        />
-      </h2>
+      <div class="intro flex flex-col text-center align-middle">
+        <h2 class="font-bold">
+          ToDo-Liste von
+          <input
+            class="appearance-none border-none bg-transparent text-white focus:border-none"
+            type="text"
+            placeholder="Name eintragen"
+            v-model="name"
+          />
+        </h2>
+        <h3 class="mt-12">Es ist: {{ currentDate }}</h3>
+      </div>
     </section>
   </main>
 </template>
