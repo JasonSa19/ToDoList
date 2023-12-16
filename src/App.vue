@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, computed, watch } from "vue";
+import dayjs from "dayjs";
 
 // Empty Array for ToDos
 const toDos = ref([]);
@@ -30,16 +31,20 @@ onMounted(() => {
   name.value = localStorage.getItem("name") || "";
 });
 
-// Get Time and Date
+const currentDate = new Date().toISOString();
+const formatDate = (currentDate) => {
+  const formattedDate = dayjs(currentDate).format("DD.MM.YYYY");
+  return formattedDate;
+};
 
-const currentDate = new Date();
+const finalDate = formatDate(currentDate);
 </script>
 
 <template>
   <main id="app">
     <section class="greeting mt-12 flex justify-center">
       <div class="intro flex flex-col text-center align-middle">
-        <h2 class="font-bold">
+        <h2 class="text-center font-bold">
           ToDo-Liste von
           <input
             class="appearance-none border-none bg-transparent text-white focus:border-none"
@@ -48,7 +53,7 @@ const currentDate = new Date();
             v-model="name"
           />
         </h2>
-        <h3 class="mt-12">Es ist: {{ currentDate }}</h3>
+        <h3 class="mt-6">{{ finalDate }}</h3>
       </div>
     </section>
   </main>
